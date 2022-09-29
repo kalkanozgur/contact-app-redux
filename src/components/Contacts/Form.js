@@ -9,9 +9,8 @@ function Form() {
 	const dispatch = useDispatch();
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (!name) {
-			return false;
-		}
+		if (!name) return false;
+
 		dispatch(addContact({ id: nanoid(), name }));
 		setName("");
 	};
