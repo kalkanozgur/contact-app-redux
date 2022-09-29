@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	body {
+		@apply flex flex-col items-center justify-center bg-gray-500;
+	}
+}
+
+@layer components {
+	input {
+		@apply h-10 rounded-lg border px-3 outline-none;
+	}
+}

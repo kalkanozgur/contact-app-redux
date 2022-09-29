@@ -2,8 +2,8 @@ import Contacts from "./components/Contacts";
 
 function App() {
 	return (
-		<div className="flex flex-col items-center">
-			<h1 className="text-3xl">Contacts</h1>
+		<div>
+			<h1 className="pt-3">Contacts</h1>
 			<Contacts />
 		</div>
 	);
