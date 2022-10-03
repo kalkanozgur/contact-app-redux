@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import Modal from "../Modal/Modal";
 import Form from "./Form";
-import { deleteContact, changeContact } from "./../../context/contactSlice";
+import { deleteContact, updateContact } from "./../../context/contactSlice";
 
 function Item({ contact }) {
 	const [show, setShow] = useState(false);
@@ -17,7 +17,7 @@ function Item({ contact }) {
 	return (
 		<li className="my-3 flex h-10 w-72 flex-row items-center rounded-lg bg-gray-800">
 			<div
-				className="flex w-72 flex-row justify-between"
+				className="flex w-72 cursor-pointer flex-row justify-between"
 				onClick={() => setShow(true)}
 			>
 				<span className="pl-3 font-semibold text-slate-400">
@@ -34,6 +34,7 @@ function Item({ contact }) {
 							phonePlaceHolder={contact.phone_number}
 							contact={contact}
 							type="Change"
+							onClose={() => setShow(false)}
 						/>
 					</Modal>
 				</div>

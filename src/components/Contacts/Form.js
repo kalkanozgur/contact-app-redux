@@ -2,29 +2,34 @@ import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
-import { addContact, changeContact } from "./../../context/contactSlice";
+import { addContact, updateContact } from "./../../context/contactSlice";
 
 function Form(props) {
-	const [name, setName] = useState("");
-	const [number, setNumber] = useState("");
+	const [name, setName] = useState(props.contact ? props.contact.name : "");
+	const [number, setNumber] = useState(
+		props.contact ? props.contact.phone_number : ""
+	);
 	const dispatch = useDispatch();
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!name || !number) return false;
 		if (props.type === "Change") {
-			console.log(props.type);
 			const returnValue = {
 				id: props.contact.id,
-				name: name,
-				phone_number: number,
+				changes: {
+					name: name,
+					phone_number: number,
+				},
 			};
-			dispatch(changeContact(returnValue));
-		}
+			dispatch(updateContact(returnValue));
+			props.onClose();
+		} else dispatch(addContact({ id: nanoid(), name, phone_number: number }));
 
-		dispatch(addContact({ id: nanoid(), name, phone_number: number }));
 		setName("");
 		setNumber("");
 	};
+
 	return (
 		<div>
 			<form
@@ -40,7 +45,7 @@ function Form(props) {
 					}
 				/>
 				<input
-					// type="number"
+					type="number"
 					value={number}
 					onChange={(e) => setNumber(e.target.value)}
 					placeholder={

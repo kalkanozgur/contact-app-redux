@@ -38,13 +38,6 @@ function Modal(props) {
 				className="box-border flex h-80 w-80 flex-col rounded-xl bg-gray-500 p-5"
 				onClick={(e) => e.stopPropagation()}
 			>
-				{/* <span
-					onClick={onClose}
-					className="fixed m-auto mr-3 h-6 w-6 cursor-pointer rounded-full bg-red-600 text-center text-white"
-				>
-					X
-				</span> */}
-
 				{/* Modal Header */}
 				<div className="">
 					{/* Modal Title */}
