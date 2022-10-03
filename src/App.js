@@ -1,11 +1,12 @@
 import Contacts from "./components/Contacts";
 import { useDispatch } from "react-redux";
 import { deleteAllContacts } from "./context/contactSlice";
+import Modal from "./components/Modal/Modal";
 
 function App() {
 	const dispatch = useDispatch();
 	return (
-		<div>
+		<div className="flex items-center justify-center">
 			<Contacts />
 			<span
 				onClick={() => dispatch(deleteAllContacts())}

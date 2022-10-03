@@ -8,7 +8,7 @@ import { contactSelectors } from "./../../context/contactSlice";
 function Contacts() {
 	const total = useSelector(contactSelectors.selectTotal);
 	return (
-		<div className="pt-5">
+		<div className="flex w-9/12 flex-col items-center pt-5">
 			<span className=" text-xl font-bold">
 				Contacts {total > 0 && `(${total})`}
 			</span>

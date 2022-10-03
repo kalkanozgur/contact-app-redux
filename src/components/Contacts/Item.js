@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { deleteContact } from "./../../context/contactSlice";
+import Modal from "../Modal/Modal";
+import Form from "./Form";
+import { deleteContact, changeContact } from "./../../context/contactSlice";
 
 function Item({ contact }) {
+	const [show, setShow] = useState(false);
 	const dispatch = useDispatch();
+
 	const handleDelete = (e) => {
 		if (window.confirm("Are you sure?")) {
 			dispatch(deleteContact(contact.id));
@@ -12,10 +16,27 @@ function Item({ contact }) {
 	};
 	return (
 		<li className="my-3 flex h-10 w-72 flex-row items-center rounded-lg bg-gray-800">
-			<div className="flex w-72 flex-row justify-between">
+			<div
+				className="flex w-72 flex-row justify-between"
+				onClick={() => setShow(true)}
+			>
 				<span className="pl-3 font-semibold text-slate-400">
 					{contact.name}
 				</span>
+				<div>
+					<Modal
+						title="Edit Contact"
+						show={show}
+						onClose={() => setShow(false)}
+					>
+						<Form
+							namePlaceHolder={contact.name}
+							phonePlaceHolder={contact.phone_number}
+							contact={contact}
+							type="Change"
+						/>
+					</Modal>
+				</div>
 				<span className="pr-2  font-semibold text-slate-400">
 					{contact.phone_number}
 				</span>
